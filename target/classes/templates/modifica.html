@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Adauga</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        .titlu_pagina {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 75px;
+            text-align: center;
+            color: white;
+        }
+        .subtitlu_pagina {
+            width: 100%;
+            height: 50px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 50px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .notita_celula {
+            border: 2px solid white;
+            border-radius: 20px;
+            width: 40%;
+            height: 455px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+        }
+        hr {
+            width: 75%;
+        }
+        .titlu_notita {
+            width: 100%;
+            height: 30px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-weight: bold;
+            font-size: 30px;
+            text-align: center;
+            color: white;
+            background: none;
+            border: none;
+            border: 2px solid white;
+            border-radius: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .subtitlu_notita {
+            width: 100%;
+            height: 20px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 20px;
+            text-align: center;
+            color: white;
+            background: none;
+            border: none;
+            border: 2px solid white;
+            border-radius: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .continut_notita {
+            width: 100%;
+            height: 200px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 15px;
+            text-align: center;
+            color: white;
+            border: 2px solid white;
+            border-radius: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            word-wrap: break-word;
+            background: none;
+            border: 2px solid white;
+            border-radius: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form_inapoi {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5px;
+            width: 100px;
+            font-family: 'Gotham';
+            background-color: white;
+            text-align: center;
+            border-radius: 20px;
+        }
+        .div_buton_inapoi {
+            margin-left:auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 100px;
+        }
+        .buton_inapoi {
+            background: white;
+            border: 2px solid white;
+            border-radius: 20px;
+            font-family: 'Gotham';
+            font-size: 25px;
+        }
+        .notita_arhivat {
+            width: 90%;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 15px;
+            text-align: center;
+            color: white;
+            margin-left: auto;
+            margin-right: auto;
+            word-wrap: break-word;
+        }
+        .div_titlu_notita {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+        .div_subtitlu_notita {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+        .div_continut_notita {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+        .mesaj_eroare {
+            font-family: 'Gotham';
+            font-size: 20px;
+            width: 90%;
+            margin-left:auto;
+            margin-right: auto;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .culori {
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            background-color: none;
+            font-family: 'Gotham';
+            font-size:25px;
+            border: 2px solid white;
+            border-radius: 20px;
+            text-align:center;
+        }
+        .div_culoare_notita {
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+<div class = "titlu_pagina"><b>NOTES APP</b></div>
+<hr>
+<div class = "div_buton_inapoi">
+    <form class = "form_inapoi" action = "/" method = "get">
+        <button class = "buton_inapoi" type = "submit" >Inapoi</button>
+    </form>
+</div>
+<div class = "subtitlu_pagina">Modifica notita: </div>
+<form class = "notita_celula" th:action="@{/modifica/{id}(id = ${notita.id})}" th:object="${notita}" method = "post">
+    <div class = "div_titlu_notita">
+        <input class = "titlu_notita" type = "text" placeholder = "Titlu" id = "titlu" name = "titlu" th:text = "${notita.titlu}" th:field="*{titlu}">
+    </div>
+    <div class = "div_subtitlu_notita">
+        <input class = "subtitlu_notita" type = "text" placeholder = "Subtitlu" id = "subtitlu" th:text = "${notita.subtitlu}" name = "subtitlu" th:field="*{subtitlu}">
+    </div>
+    <hr>
+    <div class = "div_continut_notita">
+        <input class = "continut_notita" type = "text" placeholder = "Continut" id = "continut" th:text = "${notita.continut}" name = "continut" th:field="*{continut}">
+    </div>
+    <div class = "div_culoare_notita">
+        <select class = "culori" id = "culoare" th:field = "*{culoare}">
+            <option th:value="'none'">Incolor</option>
+            <option th:value="'red'">Rosu</option>
+            <option th:value="'green'">Verde</option>
+            <option th:value="'blue'">Albastru</option>
+            <option th:value="'orange'">Portocaliu</option>
+            <option th:value="'brown'">Maro</option>
+            <option th:value="'purple'">Mov</option>
+            <option th:value="'cyan'">Cyan</option>
+        </select>
+    </div>
+    <div class = "div_buton_inapoi">
+        <button class = "buton_inapoi" type = "submit">Submit</button>
+    </div>
+</form>
+<div class = "mesaj_eroare" th:text="${mesaj}"></div>
+</body>
+</html>

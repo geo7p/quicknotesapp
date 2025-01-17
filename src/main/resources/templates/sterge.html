@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Sterge</title>
+  <style>
+    body {
+        background-color: black;
+    }
+    .titlu_pagina {
+        width: 100%;
+        height: 100px;
+        margin-top: 10px;
+        font-family: 'Gotham';
+        font-size: 75px;
+        text-align: center;
+        color: white;
+    }
+    .subtitlu_pagina {
+        width: 100%;
+        height: 50px;
+        margin-top: 10px;
+        font-family: 'Gotham';
+        font-size: 50px;
+        text-align: center;
+        color: white;
+        margin-bottom: 20px;
+    }
+    .notita_celula {
+        border: 2px solid white;
+        border-radius: 20px;
+        width: 40%;
+        height: 215px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+    }
+    hr {
+        width: 75%;
+    }
+    .titlu_notita {
+        width: 100%;
+        height: 30px;
+        margin-top: 10px;
+        font-family: 'Gotham';
+        font-weight: bold;
+        font-size: 30px;
+        text-align: center;
+        color: white;
+    }
+    .subtitlu_notita {
+        width: 100%;
+        height: 20px;
+        margin-top: 10px;
+        font-family: 'Gotham';
+        font-size: 20px;
+        text-align: center;
+        color: white;
+    }
+    .continut_notita {
+        width: 90%;
+        height: 100px;
+        margin-top: 10px;
+        font-family: 'Gotham';
+        font-size: 15px;
+        text-align: center;
+        color: white;
+        border: 2px solid white;
+        border-radius: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        word-wrap: break-word;
+    }
+    .form_sterge {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        width: 150px;
+        font-family: 'Gotham';
+        background-color: white;
+        text-align: center;
+        border-radius: 20px;
+    }
+    .buton_sterge {
+        background: none;
+        border: none;
+        font-family: 'Gotham';
+        font-size: 20px;
+        text-align: center;
+    }
+    .mesaj_eroare {
+        font-family: 'Gotham';
+        font-size: 20px;
+        width: 90%;
+        margin-left:auto;
+        margin-right: auto;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class = "titlu_pagina"><b>NOTES APP</b></div>
+<hr>
+<div class = "subtitlu_pagina">Sigur stergi aceasta notita? </div>
+<div class = "notita_celula" th:object="${notita}" th:style="'background-color: ' + ${notita.culoare}">
+  <div class = "titlu_notita" th:text="${notita.titlu}"></div>
+  <div class = "subtitlu_notita" th:text="${notita.subtitlu}"></div>
+  <div class = "continut_notita" th:text="${notita.continut}"></div>
+</div>
+<div class = "div_form_sterge">
+  <form class = "form_sterge" th:action="@{/confirmaStergere/{id}(id=${notita.id})}" method = "post">
+    <button class = "buton_sterge" type = "submit">Da</button>
+  </form>
+  <form class = "form_sterge" action = "/" method = "get">
+    <button class = "buton_sterge" type = "submit">Nu</button>
+  </form>
+</div>
+</body>
+</html>

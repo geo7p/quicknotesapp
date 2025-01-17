@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            background-color: black;
+        }
+        .titlu_pagina {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 75px;
+            text-align: center;
+            color: white;
+        }
+        .subtitlu_pagina {
+            width: 100%;
+            height: 50px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 50px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+        .notita_celula {
+            border: 2px solid white;
+            border-radius: 20px;
+            width: 40%;
+            height: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+        }
+        hr {
+            width: 75%;
+        }
+        .titlu_notita {
+            width: 100%;
+            height: 30px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-weight: bold;
+            font-size: 30px;
+            text-align: center;
+            color: white;
+        }
+        .subtitlu_notita {
+            width: 100%;
+            height: 20px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 20px;
+            text-align: center;
+            color: white;
+        }
+        .continut_notita {
+            width: 90%;
+            height: 100px;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 15px;
+            text-align: center;
+            color: white;
+            border: 2px solid white;
+            border-radius: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            word-wrap: break-word;
+        }
+        .form_adauga {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            width: 150px;
+            font-family: 'Gotham';
+            background-color: white;
+            text-align: center;
+            border-radius: 20px;
+        }
+        .buton_adauga {
+            background: none;
+            border: none;
+            font-family: 'Gotham';
+            font-size: 20px;
+            text-align: center;
+        }
+        .form_arhivate{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5px;
+            width: 250px;
+            font-family: 'Gotham';
+            background-color: white;
+            text-align: center;
+            border-radius: 20px;
+        }
+        .buton_arhivate {
+            background: none;
+            border: none;
+            font-family: 'Gotham';
+            font-size: 20px;
+        }
+        .form_arhivare {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+            width: 250px;
+            font-family: 'Gotham';
+            background-color: white;
+            text-align: center;
+            border-radius: 20px;
+        }
+        .buton_arhivare {
+            background: none;
+            border: none;
+            font-family: 'Gotham';
+            font-size: 20px;
+        }
+        .notita_arhivat {
+            width: 90%;
+            margin-top: 10px;
+            font-family: 'Gotham';
+            font-size: 15px;
+            text-align: center;
+            color: white;
+            margin-left: auto;
+            margin-right: auto;
+            word-wrap: break-word;
+        }
+        .mesaj_eroare {
+            font-family: 'Gotham';
+            font-size: 20px;
+            width: 90%;
+            margin-left:auto;
+            margin-right: auto;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class = "titlu_pagina"><b>NOTES APP</b></div>
+<hr>
+<div class = "subtitlu_pagina">Notite: </div>
+<form class = "form_adauga" action="/adauga" method = "get">
+    <button class = "buton_adauga" type = "submit">ADAUGA</button>
+</form>
+<form class = "form_arhivate" action="/arhivate" method = "get">
+    <button class = "buton_arhivate" type = "submit">Afiseaza Arhivate</button>
+</form>
+<form class = "form_arhivate" action="/adaugaEticheta" method = "get">
+    <button class = "buton_arhivate" type = "submit">Adauga eticheta</button>
+</form>
+<div class = "notita_celula" th:each="notitaPinned : ${notitePinned}" th:style="'background-color: ' + ${notitaPinned.culoare} + ';'" style="border : 2px solid red; height : 200px;">
+    <div class = "titlu_notita" th:text="${notitaPinned.textPin}" style="color:red;"></div>
+    <div class = "titlu_notita" th:text="${notitaPinned.titlu}" style="font-weight:bold; color: red;"></div>
+    <div class = "subtitlu_notita" th:text="${notitaPinned.subtitlu}" style="color:red;"></div>
+    <hr style="background-color:red">
+    <div class = "continut_notita" th:text="${notitaPinned.continut}" style="border: 2px solid red; color:red;"></div>
+    <div>
+        <form class = "form_arhivare" th:action="@{/pin/{id}(id=${notitaPinned.id})}" method = "post">
+            <button class = "buton_arhivare" type = "submit" th:text="${notitaPinned.butonPin}"></button>
+        </form>
+    </div>
+    </div>
+</div>
+<div class = "notita_celula" th:style="'background-color: ' + ${notitaSimpla.culoare}" th:each="notitaSimpla : ${notiteSimple}">
+    <div class = "titlu_notita" th:text="${notitaSimpla.titlu}" style="font-weight:bold;"></div>
+    <div class = "subtitlu_notita" th:text="${notitaSimpla.subtitlu}"></div>
+    <hr>
+    <div class = "continut_notita" th:text="${notitaSimpla.continut}"></div>
+    <div class = "notita_arhivat" th:text="${notitaSimpla.textArhivat}"></div>
+    <div>
+        <form class = "form_arhivare" th:action="@{/arhiveaza/{id}(id=${notitaSimpla.id})}" method = "post">
+            <button class = "buton_arhivare" type = "submit" th:text="${notitaSimpla.butonArhivat}"></button>
+        </form>
+        <form class = "form_arhivare" th:action="@{/pin/{id}(id=${notitaSimpla.id})}" method = "post">
+            <button class = "buton_arhivare" type = "submit" th:text="${notitaSimpla.butonPin}"></button>
+        </form>
+    </div>
+    <form class = "form_adauga" th:action="@{/sterge/{id}(id=${notitaSimpla.id})}" method = "post">
+        <button class = "buton_adauga" type = "submit">STERGE</button>
+    </form>
+    <form class = "form_adauga" th:action="@{/formModifica/{id}(id=${notitaSimpla.id})}" method = "get">
+        <button class = "buton_adauga" type = "submit">MODIFICA</button>
+    </form>
+</div>
+</div>
+<div class = "mesaj_eroare" th:text="${mesaj}"></div>
+</body>
+</html>
