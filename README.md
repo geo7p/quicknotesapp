@@ -1,1 +1,5 @@
-• Developed a Spring Boot Web Application which aims at managing user created Notes. • Used Spring Web, Thymeleaf and Jpa Data as dependencies to store Note Entities in a Repository. • Notes can be added, pinned, archived and deleted by the user.
+• Developed a Spring Boot Web Application which aims at managing user created Notes.
+
+• Used Spring Web, Thymeleaf and Jpa Data as dependencies to store Note Entities in a Repository.
+
+• Notes can be added, pinned, archived and deleted by the user.
